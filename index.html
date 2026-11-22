@@ -91,9 +91,15 @@
       <div class="likes-pin" id="likes-pin">
         <div class="container">
           <h2 class="heading" data-reveal-heading>好きなこと</h2>
-          <p class="section-lead likes-hint">横にスワイプしてご覧ください。</p>
+          <div class="likes-head">
+            <p class="section-lead likes-hint">横にスクロールするか、矢印ボタンでご覧ください。</p>
+            <div class="likes-controls">
+              <button class="likes-arrow" id="likes-prev" type="button" aria-label="前のカードへ" aria-controls="likes-viewport"></button>
+              <button class="likes-arrow" id="likes-next" type="button" aria-label="次のカードへ" aria-controls="likes-viewport"></button>
+            </div>
+          </div>
         </div>
-        <div class="likes-viewport" id="likes-viewport">
+        <div class="likes-viewport" id="likes-viewport" tabindex="0" aria-label="好きなことの一覧（横にスクロールできます）">
           <div class="likes-track" id="likes-list"></div>
         </div>
       </div>
