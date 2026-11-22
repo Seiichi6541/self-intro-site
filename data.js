@@ -61,7 +61,7 @@ const SITE_DATA = {
   ],
 
   // ---------- 4. 好きなこと（Likes） ----------
-  // icon に使える名前：coffee / whisky / wine / italian / music / heart / lightbulb
+  // icon に使える名前：coffee / whisky / wine / italian / music / heart / lightbulb / ghost / film / popcorn / skull
   likes: [
     { icon: "coffee", title: "珈琲", text: "喫茶店巡りが趣味。日本橋珈琲館で働くほど好きです。" },
     { icon: "whisky", title: "ウイスキー", text: "家でコレクションしています。" },
