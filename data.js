@@ -112,8 +112,7 @@ const SITE_DATA = {
   // ---------- 8. 連絡先・SNS ----------
   // url が空 "" のあいだは「準備中」と表示されます。
   sns: [
-    { service: "X", icon: "x", url: "" },
-    { service: "Instagram", icon: "instagram", url: "" },
+    { service: "Instagram", icon: "instagram", url: "https://www.instagram.com/seiichi6541/" },
   ],
   contactNote: "連絡はチャット（DM）歓迎です。",
 

@@ -92,7 +92,6 @@
 
 | サービス | URL |
 | --- | --- |
-| X | 【TODO：URL】 |
-| Instagram | 【TODO：URL】 |
+| Instagram | https://www.instagram.com/seiichi6541/ |
 
 連絡はチャット（DM）歓迎です。
