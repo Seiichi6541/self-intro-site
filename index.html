@@ -2,92 +2,188 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>遠藤誠一 | 自己紹介</title>
+  <meta name="description" content="遠藤誠一の自己紹介と取扱説明書です。">
+  <meta name="theme-color" content="#0f2a4f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- ページ内ナビ（F-06） -->
-  <header class="site-header">
-    <nav class="nav" aria-label="ページ内メニュー">
-      <a href="#about">About</a>
+<body class="is-loading">
+  <!-- 読み込み時の演出 -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-inner">
+      <span class="intro-line"></span>
+      <p class="intro-name" id="intro-name"></p>
+    </div>
+  </div>
+
+  <!-- スクロールの進み具合 -->
+  <div class="progress" aria-hidden="true"><span class="progress-bar" id="progress-bar"></span></div>
+
+  <!-- メニュー -->
+  <header class="header" id="header">
+    <a class="header-logo" href="#top" id="header-logo"></a>
+    <button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="nav">
+      <span class="menu-button-lines" aria-hidden="true"></span>
+      <span class="menu-button-text">メニュー</span>
+    </button>
+    <nav class="nav" id="nav" aria-label="ページ内メニュー">
+      <a href="#about">わたしについて</a>
       <a href="#timeline">年表</a>
       <a href="#likes">好きなこと</a>
-      <a href="#skills">資格</a>
-      <a href="#strengths">強み</a>
+      <a href="#skills">スキルと強み</a>
       <a href="#manual">取扱説明書</a>
       <a href="#contact">連絡先</a>
     </nav>
   </header>
 
-  <main>
-    <!-- 1. トップ（F-01） -->
-    <section id="hero" class="hero">
-      <div id="hero-photo" class="hero-photo"></div>
-      <h1 id="hero-name" class="hero-name"></h1>
-      <p id="hero-kana" class="hero-kana"></p>
+  <main id="top">
+    <!-- 1. トップ -->
+    <section class="hero" id="hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-photo" id="hero-photo"></div>
+        <h1 class="hero-name" id="hero-name"></h1>
+        <p class="hero-kana" id="hero-kana"></p>
+      </div>
+      <ul class="hero-facts" id="hero-facts"></ul>
+      <a class="scroll-cue" href="#about">
+        <span class="scroll-cue-text">下へ</span>
+        <span class="scroll-cue-line" aria-hidden="true"></span>
+      </a>
     </section>
 
-    <!-- 2. 基本情報（F-02） -->
-    <section id="about" class="section">
-      <h2>About</h2>
-      <dl id="about-items" class="info-list"></dl>
-      <div id="about-intro" class="intro"></div>
+    <!-- 2. わたしについて -->
+    <section class="section about" id="about">
+      <div class="container">
+        <h2 class="heading" data-reveal-heading>わたしについて</h2>
+        <div class="about-layout">
+          <div class="about-intro" id="about-intro"></div>
+          <dl class="info-list" id="about-items"></dl>
+        </div>
+      </div>
     </section>
 
-    <!-- 3. 年表（F-08） -->
-    <section id="timeline" class="section">
-      <h2>年表</h2>
-      <ol id="timeline-list" class="timeline"></ol>
+    <!-- 2.5 ストーリー（スクロールで文字が色づく） -->
+    <section class="story" id="story">
+      <div class="container">
+        <p class="story-label" id="story-label"></p>
+        <p class="story-text" id="story-text"></p>
+      </div>
     </section>
 
-    <!-- 4. 好きなこと・話しかけネタ（F-02, F-09） -->
-    <section id="likes" class="section">
-      <h2>好きなこと</h2>
-      <div id="likes-list" class="cards"></div>
-      <h3>こんな話題を振ってもらえると喜びます</h3>
-      <ul id="talk-topics" class="topics"></ul>
+    <!-- 3. 年表 -->
+    <section class="section timeline-section" id="timeline">
+      <div class="container">
+        <h2 class="heading" data-reveal-heading>年表</h2>
+        <div class="timeline-wrap">
+          <span class="timeline-track" aria-hidden="true"><span class="timeline-fill" id="timeline-fill"></span></span>
+          <ol class="timeline" id="timeline-list"></ol>
+        </div>
+      </div>
     </section>
 
-    <!-- 5. 資格・スキル（F-02） -->
-    <section id="skills" class="section">
-      <h2>資格・スキル</h2>
-      <ul id="skills-list" class="simple-list"></ul>
+    <!-- 4. 好きなこと -->
+    <section class="section likes" id="likes">
+      <div class="likes-pin" id="likes-pin">
+        <div class="container">
+          <h2 class="heading" data-reveal-heading>好きなこと</h2>
+          <p class="section-lead likes-hint">横にスワイプしてご覧ください。</p>
+        </div>
+        <div class="likes-viewport" id="likes-viewport">
+          <div class="likes-track" id="likes-list"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="chat" id="chat">
+          <h3 class="chat-title">こんな話題を振ってもらえると喜びます</h3>
+          <div class="chat-window" id="talk-topics" aria-live="polite"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- 6. 強み（F-03） -->
-    <section id="strengths" class="section">
-      <h2>強み</h2>
-      <div id="strengths-list" class="cards"></div>
+    <!-- 5. スキルと強み -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <h2 class="heading" data-reveal-heading>スキルと強み</h2>
+        <div class="skills-layout">
+          <div class="skills-block">
+            <h3 class="sub-heading">資格・スキル</h3>
+            <ul class="skill-list" id="skills-list"></ul>
+          </div>
+          <div class="skills-block">
+            <h3 class="sub-heading">強み</h3>
+            <div class="strength-list" id="strengths-list"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- 7. 取扱説明書（F-03, F-04） -->
-    <section id="manual" class="section">
-      <h2>取扱説明書</h2>
-      <div id="manual-misunderstanding" class="callout"></div>
-      <dl id="manual-items" class="info-list"></dl>
-      <h3>弱みと対処法</h3>
-      <div id="weaknesses-list" class="cards"></div>
+    <!-- 6. 取扱説明書 -->
+    <section class="section manual" id="manual">
+      <div class="container">
+        <h2 class="heading" data-reveal-heading>取扱説明書</h2>
+        <article class="manual-doc">
+          <header class="manual-cover">
+            <p class="manual-cover-title" id="manual-name"></p>
+            <p class="manual-cover-name" id="manual-since"></p>
+            <p class="manual-cover-note">ご一緒する前に、ぜひお読みください。</p>
+          </header>
+
+          <section class="manual-part">
+            <h3 class="manual-part-title">仕様</h3>
+            <dl class="spec" id="manual-items"></dl>
+          </section>
+
+          <section class="manual-part" id="manual-caution-part">
+            <h3 class="manual-part-title">ご注意</h3>
+            <div id="manual-cautions"></div>
+          </section>
+
+          <section class="manual-part">
+            <h3 class="manual-part-title">故障かな？と思ったら</h3>
+            <div class="faq" id="manual-misunderstanding"></div>
+          </section>
+
+          <section class="manual-part">
+            <h3 class="manual-part-title">弱みと対処法</h3>
+            <div id="weaknesses-list"></div>
+          </section>
+        </article>
+      </div>
     </section>
 
-    <!-- 8. 連絡先・SNS・QR（F-05, F-10） -->
-    <section id="contact" class="section">
-      <h2>連絡先</h2>
-      <ul id="sns-list" class="sns"></ul>
-      <p id="contact-note"></p>
-      <div class="qr">
-        <div id="qr-code"></div>
-        <p class="qr-caption">このページのQRコード</p>
+    <!-- 7. 連絡先 -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <h2 class="heading heading-light" data-reveal-heading>連絡先</h2>
+        <p class="contact-note" id="contact-note"></p>
+        <ul class="sns" id="sns-list"></ul>
+        <div class="qr">
+          <div class="qr-code" id="qr-code"></div>
+          <p class="qr-caption">このページのQRコード</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>&copy; 2026 遠藤誠一</p>
+  <footer class="footer">
+    <p class="footer-thanks">最後まで読んでくださり、ありがとうございます。</p>
+    <p class="footer-copy" id="footer-copy"></p>
   </footer>
 
-  <!-- 順番が大事：先にデータ、最後に表示処理 -->
+  <a class="to-top" href="#top" id="to-top" aria-label="ページの先頭へ戻る"></a>
+
+  <!-- 読み込む順番が大事：部品 → データ → 表示処理 -->
   <script src="lib/qrcode.js"></script>
+  <script src="lib/icons.js"></script>
+  <script src="lib/gsap.min.js"></script>
+  <script src="lib/ScrollTrigger.min.js"></script>
+  <script src="lib/lenis.min.js"></script>
   <script src="data.js"></script>
   <script src="main.js"></script>
 </body>

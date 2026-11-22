@@ -83,7 +83,7 @@
 | 分類 | 要件 |
 | --- | --- |
 | 技術構成 | HTML + CSS + 少量の JavaScript。フレームワーク・ビルド作業なし。ファイルをダブルクリックで開ける |
-| ファイル構成 | `index.html`（骨組み）/ `style.css`（見た目）/ `data.js`（掲載内容。更新はここだけ）/ `main.js`（表示処理）/ `images/` |
+| ファイル構成 | `index.html`（骨組み）/ `style.css`（見た目）/ `data.js`（掲載内容。更新はここだけ）/ `main.js`（表示処理と動き）/ `images/` / `lib/`（外部ライブラリ：GSAP・ScrollTrigger、Lenis、Phosphor Icons、qrcode-generator。ネット接続なしでも動くよう同梱） |
 | デザイン | 雰囲気は「誠実・きちんと」。メインは青、差し色は濃いめの黄色（強調したい箇所だけ）、他は白・黒・灰色。余白多め、カード型レイアウト。文字は Google Fonts の日本語フォント（例：Noto Sans JP） |
 | レスポンシブ | スマホ（幅 375px）を最優先。PC でも崩れない |
 | 更新性 | 趣味を 1つ追加するのに `data.js` の 1ブロックをコピーして書き換えるだけで済む |
