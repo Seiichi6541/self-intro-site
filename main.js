@@ -509,35 +509,6 @@ function setupHeaderState() {
   update();
 }
 
-// 好きなこと：左右の矢印ボタンで1枚ずつ横に動かす
-function setupLikesCarousel() {
-  const viewport = $("likes-viewport");
-  const prev = $("likes-prev");
-  const next = $("likes-next");
-  prev.appendChild(icon("arrowDown", "likes-arrow-icon is-prev"));
-  next.appendChild(icon("arrowDown", "likes-arrow-icon is-next"));
-
-  // カード1枚分（カードの幅＋すき間）
-  const step = () => {
-    const card = viewport.querySelector(".like-card");
-    const gap = parseFloat(getComputedStyle($("likes-list")).columnGap) || 0;
-    return card ? card.getBoundingClientRect().width + gap : viewport.clientWidth * 0.8;
-  };
-  const behavior = prefersReducedMotion ? "auto" : "smooth";
-  prev.addEventListener("click", () => viewport.scrollBy({ left: -step(), behavior }));
-  next.addEventListener("click", () => viewport.scrollBy({ left: step(), behavior }));
-
-  // 端まで来たらボタンを押せないようにする
-  const update = () => {
-    const max = viewport.scrollWidth - viewport.clientWidth;
-    prev.disabled = viewport.scrollLeft <= 2;
-    next.disabled = viewport.scrollLeft >= max - 2;
-  };
-  viewport.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
-  update();
-}
-
 // SNSボタン：マウスに少し吸い寄せられる（マウス操作の端末だけ）
 function setupMagneticButtons() {
   if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -568,7 +539,6 @@ renderSkills();
 renderManual();
 renderContact();
 renderQr();
-setupLikesCarousel();
 
 if (canAnimate) {
   gsap.registerPlugin(ScrollTrigger);
