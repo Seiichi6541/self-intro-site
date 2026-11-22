@@ -640,36 +640,6 @@ html:not(.motion) .timeline-fill { transform: scaleY(1); }
 }
 .like-text { font-size: 15px; line-height: 1.85; }
 
-/* 案内文と矢印ボタン */
-.likes-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin: -24px 0 24px;
-}
-.likes-head .section-lead { margin: 0; }
-.likes-controls { display: flex; flex-shrink: 0; gap: 8px; }
-.likes-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  color: var(--blue);
-  background: var(--white);
-  border: 1px solid var(--blue);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: color 0.3s var(--ease), background-color 0.3s var(--ease), opacity 0.3s;
-}
-.likes-arrow:hover:not(:disabled) { color: var(--white); background: var(--blue); }
-.likes-arrow:disabled { opacity: 0.3; cursor: default; }
-.likes-arrow-icon { width: 20px; height: 20px; }
-.likes-arrow-icon.is-prev { transform: rotate(90deg); }
-.likes-arrow-icon.is-next { transform: rotate(-90deg); }
-
 .likes-viewport:focus-visible { outline-offset: -2px; }
 
 @media (min-width: 900px) {
