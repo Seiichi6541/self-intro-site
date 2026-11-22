@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>遠藤誠一 | 自己紹介</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ページ内ナビ（F-06） -->
+  <header class="site-header">
+    <nav class="nav" aria-label="ページ内メニュー">
+      <a href="#about">About</a>
+      <a href="#timeline">年表</a>
+      <a href="#likes">好きなこと</a>
+      <a href="#skills">資格</a>
+      <a href="#strengths">強み</a>
+      <a href="#manual">取扱説明書</a>
+      <a href="#contact">連絡先</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. トップ（F-01） -->
+    <section id="hero" class="hero">
+      <div id="hero-photo" class="hero-photo"></div>
+      <h1 id="hero-name" class="hero-name"></h1>
+      <p id="hero-kana" class="hero-kana"></p>
+    </section>
+
+    <!-- 2. 基本情報（F-02） -->
+    <section id="about" class="section">
+      <h2>About</h2>
+      <dl id="about-items" class="info-list"></dl>
+      <div id="about-intro" class="intro"></div>
+    </section>
+
+    <!-- 3. 年表（F-08） -->
+    <section id="timeline" class="section">
+      <h2>年表</h2>
+      <ol id="timeline-list" class="timeline"></ol>
+    </section>
+
+    <!-- 4. 好きなこと・話しかけネタ（F-02, F-09） -->
+    <section id="likes" class="section">
+      <h2>好きなこと</h2>
+      <div id="likes-list" class="cards"></div>
+      <h3>こんな話題を振ってもらえると喜びます</h3>
+      <ul id="talk-topics" class="topics"></ul>
+    </section>
+
+    <!-- 5. 資格・スキル（F-02） -->
+    <section id="skills" class="section">
+      <h2>資格・スキル</h2>
+      <ul id="skills-list" class="simple-list"></ul>
+    </section>
+
+    <!-- 6. 強み（F-03） -->
+    <section id="strengths" class="section">
+      <h2>強み</h2>
+      <div id="strengths-list" class="cards"></div>
+    </section>
+
+    <!-- 7. 取扱説明書（F-03, F-04） -->
+    <section id="manual" class="section">
+      <h2>取扱説明書</h2>
+      <div id="manual-misunderstanding" class="callout"></div>
+      <dl id="manual-items" class="info-list"></dl>
+      <h3>弱みと対処法</h3>
+      <div id="weaknesses-list" class="cards"></div>
+    </section>
+
+    <!-- 8. 連絡先・SNS・QR（F-05, F-10） -->
+    <section id="contact" class="section">
+      <h2>連絡先</h2>
+      <ul id="sns-list" class="sns"></ul>
+      <p id="contact-note"></p>
+      <div class="qr">
+        <div id="qr-code"></div>
+        <p class="qr-caption">このページのQRコード</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 遠藤誠一</p>
+  </footer>
+
+  <!-- 順番が大事：先にデータ、最後に表示処理 -->
+  <script src="lib/qrcode.js"></script>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
