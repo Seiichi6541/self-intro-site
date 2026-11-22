@@ -1,187 +1,372 @@
 /* ==========================================================
-   見た目の設定です。デザインは次のステップで本格的に整えます。
-   色はここでまとめて決めています。
+   見た目の設定
+   雰囲気：誠実・きちんと
+   色：メインは青、差し色は濃いめの黄色、他は白・黒・灰色
+   スマホ表示を最優先にし、広い画面では少しゆとりを持たせる
    ========================================================== */
 
+/* 文字：見出しと名前は明朝体（きちんと感）、本文はゴシック体（読みやすさ） */
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+
 :root {
-  --color-main: #1f4e8c;    /* メイン：青 */
-  --color-accent: #e0a800;  /* 差し色：濃いめの黄色 */
-  --color-text: #222222;    /* 文字：黒 */
-  --color-muted: #6b6b6b;   /* 補足文字：灰色 */
-  --color-line: #dddddd;    /* 線：薄い灰色 */
-  --color-bg: #ffffff;      /* 背景：白 */
-  --color-bg-soft: #f4f6f9; /* うすい背景 */
+  /* 色 */
+  --blue: #1d4f91;        /* メイン：青 */
+  --blue-deep: #163c6e;   /* 見出し用の濃い青 */
+  --blue-pale: #eef3f9;   /* うすい青（背景用） */
+  --yellow: #d9a400;      /* 差し色：濃いめの黄色（線や点だけに使う） */
+  --ink: #222222;         /* 本文：黒 */
+  --gray: #5f6670;        /* 補足：灰色 */
+  --line: #d9dde3;        /* 罫線：うすい灰色 */
+  --white: #ffffff;
+
+  /* 文字 */
+  --font-serif: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
 }
 
 * { box-sizing: border-box; }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px; /* 固定メニューの分だけずらす */
+}
+
 body {
   margin: 0;
-  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
-  color: var(--color-text);
-  background: var(--color-bg);
-  line-height: 1.8;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-text-size-adjust: 100%;
 }
 
 main {
-  max-width: 720px;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 
-/* ---------- ナビ ---------- */
+a { color: var(--blue); }
+
+/* キーボード操作時のフォーカスを見やすく */
+a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- メニュー（上部に固定） ---------- */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--color-main);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
 }
 .nav {
   display: flex;
-  gap: 16px;
-  max-width: 720px;
+  gap: 4px;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 10px 16px;
+  padding: 0 12px;
   overflow-x: auto;
   white-space: nowrap;
+  scrollbar-width: none;            /* スクロールバーを隠す */
 }
+.nav::-webkit-scrollbar { display: none; }
 .nav a {
-  color: #fff;
-  text-decoration: none;
+  display: block;
+  padding: 14px 8px 12px;
   font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
 }
-.nav a:hover { color: var(--color-accent); }
+.nav a:hover { color: var(--blue); border-bottom-color: var(--yellow); }
 
-html { scroll-behavior: smooth; scroll-padding-top: 56px; }
-
-/* ---------- トップ ---------- */
+/* ---------- トップ：名刺のように名前を縦書きで ---------- */
 .hero {
-  text-align: center;
-  padding: 48px 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 48px 0 40px;
 }
 .hero-photo {
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
+  flex-shrink: 0;
+  width: 132px;
+  height: 176px;                    /* 証明写真に近い縦長 */
   overflow: hidden;
-  background: var(--color-bg-soft);
+  background: var(--blue-pale);
+  border-bottom: 4px solid var(--yellow);
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .hero-photo.no-photo {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-serif);
   font-size: 56px;
-  color: #fff;
-  background: var(--color-main);
+  color: var(--white);
+  background: var(--blue);
 }
-.hero-name { margin: 0; font-size: 32px; letter-spacing: 0.1em; }
-.hero-kana { margin: 0; color: var(--color-muted); }
+.hero-name {
+  margin: 0;
+  writing-mode: vertical-rl;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  color: var(--blue-deep);
+}
+.hero-kana {
+  margin: 0;
+  writing-mode: vertical-rl;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.3em;
+  color: var(--gray);
+  padding-top: 4px;
+}
 
 /* ---------- セクション共通 ---------- */
 .section {
-  padding: 32px 0;
-  border-top: 1px solid var(--color-line);
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
 }
 .section h2 {
-  margin: 0 0 16px;
-  color: var(--color-main);
-  border-left: 4px solid var(--color-accent);
-  padding-left: 12px;
+  margin: 0 0 24px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--blue-deep);
 }
-.section h3 { margin: 24px 0 8px; font-size: 16px; }
+.section h2::after {               /* 見出しの下に黄色の短い線 */
+  content: "";
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin-top: 10px;
+  background: var(--yellow);
+}
+.section h3 {
+  margin: 32px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
 
-.coming-soon { color: var(--color-muted); }
-
-/* ラベル：値 の一覧 */
-.info-list {
-  display: grid;
-  grid-template-columns: 7em 1fr;
-  gap: 8px 16px;
+.coming-soon {
   margin: 0;
+  padding: 16px;
+  font-size: 14px;
+  color: var(--gray);
+  border: 1px dashed var(--line);
+  text-align: center;
 }
-.info-list dt { font-weight: bold; color: var(--color-main); }
-.info-list dd { margin: 0; }
 
-.intro { margin-top: 16px; }
+/* ---------- 「ラベル：値」の一覧 ---------- */
+.info-list { margin: 0; }
+.info-list dt {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray);
+}
+.info-list dd {
+  margin: 0 0 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.info-list dd:last-child { margin-bottom: 0; }
 
-/* カード */
+.intro { margin-top: 28px; }
+.intro p { margin: 0 0 1em; }
+.intro p:last-child { margin-bottom: 0; }
+
+/* ---------- 年表：縦の線と点 ---------- */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 20px;
+  border-left: 2px solid var(--blue-pale);
+}
+.timeline-item {
+  position: relative;
+  padding: 0 0 20px 4px;
+}
+.timeline-item::before {           /* 年表の点 */
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -26px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--blue);
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item:last-child::before { /* 最後（これからの目標）だけ黄色 */
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+.timeline-when {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+}
+.timeline-what { display: block; }
+
+/* ---------- 好きなこと・強み・弱み（一覧） ---------- */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr;
 }
 .card {
-  padding: 16px;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
-  background: var(--color-bg-soft);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
 }
-.card-title { margin: 0 0 4px; color: var(--color-main); }
-.card-text { margin: 0; font-size: 14px; }
-
-/* 年表 */
-.timeline { list-style: none; margin: 0; padding: 0; }
-.timeline-item {
-  display: grid;
-  grid-template-columns: 7em 1fr;
-  gap: 16px;
-  padding: 8px 0;
-  border-bottom: 1px dashed var(--color-line);
+.card:first-child { padding-top: 0; }
+.card-title {
+  margin: 0 0 4px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue-deep);
 }
-.timeline-when { font-weight: bold; color: var(--color-main); }
+.card-text { margin: 0; font-size: 15px; }
 
-/* 取扱説明書の「よく言われること」 */
+/* 話しかけネタ：吹き出し */
+.topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.topics li {
+  padding: 8px 14px;
+  font-size: 15px;
+  background: var(--blue-pale);
+  border-radius: 14px 14px 14px 2px;
+}
+
+/* 資格 */
+.simple-list { margin: 0; padding-left: 1.2em; }
+
+/* ---------- 取扱説明書 ---------- */
 .callout {
-  margin-bottom: 16px;
-  padding: 16px;
-  border-left: 4px solid var(--color-accent);
-  background: var(--color-bg-soft);
+  margin-bottom: 28px;
+  padding: 20px;
+  background: var(--blue-pale);
+  border-top: 3px solid var(--blue);
 }
 .callout p { margin: 0; }
-.callout-said { font-weight: bold; }
+.callout-said {
+  margin-bottom: 8px !important;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--blue-deep);
+}
 
-/* SNS */
-.sns { display: flex; gap: 12px; list-style: none; padding: 0; }
+/* ---------- 連絡先 ---------- */
+.sns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
 .sns-link {
   display: inline-block;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: var(--color-main);
-  color: #fff;
-  text-decoration: none;
-}
-.sns-link.is-empty { background: var(--color-line); color: var(--color-muted); }
-
-/* QRコード */
-.qr { width: 160px; margin-top: 16px; text-align: center; }
-.qr-caption { margin: 0; font-size: 12px; color: var(--color-muted); }
-
-/* フッター */
-.site-footer {
+  min-width: 128px;
+  padding: 10px 20px;
+  font-weight: 700;
   text-align: center;
-  padding: 24px;
-  color: var(--color-muted);
-  font-size: 12px;
+  text-decoration: none;
+  color: var(--white);
+  background: var(--blue);
+  border: 1px solid var(--blue);
+}
+.sns-link:hover { background: var(--blue-deep); }
+.sns-link.is-empty {
+  font-weight: 400;
+  color: var(--gray);
+  background: var(--white);
+  border: 1px dashed var(--line);
 }
 
-/* ---------- スクロール演出 ---------- */
+.qr {
+  width: 152px;
+  margin-top: 28px;
+  padding: 12px 12px 8px;
+  text-align: center;
+  border: 1px solid var(--line);
+}
+.qr svg { display: block; width: 100%; height: auto; }
+.qr-caption { margin: 4px 0 0; font-size: 12px; color: var(--gray); }
+
+/* ---------- フッター ---------- */
+.site-footer {
+  padding: 32px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--white);
+  background: var(--blue-deep);
+}
+.site-footer p { margin: 0; }
+
+/* ---------- スクロール演出（控えめに） ---------- */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(12px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .fade-in.is-visible { opacity: 1; transform: none; }
 
-/* 動きを減らす設定の人には演出をしない */
 @media (prefers-reduced-motion: reduce) {
-  .fade-in { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
+  .fade-in { opacity: 1; transform: none; transition: none; }
 }
 
-/* スマホ */
-@media (max-width: 480px) {
-  .info-list, .timeline-item { grid-template-columns: 1fr; gap: 0 16px; }
-  .info-list dd { margin-bottom: 8px; }
+/* ---------- 広い画面（タブレット・PC） ---------- */
+@media (min-width: 640px) {
+  .hero { gap: 28px; padding: 72px 0 56px; }
+  .hero-photo { width: 156px; height: 208px; }
+  .hero-name { font-size: 48px; }
+
+  .section { padding: 56px 0; }
+
+  .info-list {
+    display: grid;
+    grid-template-columns: 8em 1fr;
+  }
+  .info-list dt,
+  .info-list dd {
+    padding: 12px 0;
+    margin: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .info-list dt { font-size: 14px; }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+  }
+  .card:nth-child(2) { padding-top: 0; }
 }
